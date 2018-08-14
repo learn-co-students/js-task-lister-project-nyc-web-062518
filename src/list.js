@@ -1,3 +1,10 @@
+let listID = 0
+let allLists = []
+
 class List {
-  // your code here
+  constructor(title){
+    this.title = title
+    this.id = ++listID
+    allLists.push(this)
+  }
 }
