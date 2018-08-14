@@ -13,6 +13,8 @@ let selectList = document.getElementById("parent-list")
 let createNewTask = document.getElementById('create-task-form')
 let taskDescription = document.getElementById("new-task-description")
 let newTaskPriority = document.getElementById("new-task-priority")
+let deleteListButtons = document.getElementsByClassName("delete-list")
+let createNewTaskForm = document.getElementById("create-task-form")
 
 createNewListBtn.addEventListener("submit", function (e) {
   e.preventDefault()
@@ -21,6 +23,7 @@ createNewListBtn.addEventListener("submit", function (e) {
   lists.appendChild(newList)
     selectList.innerHTML += `<option value="${newListTitle.value}" selected>${newListTitle.value}</option>`
   newListTitle.value = ""
+  createNewTaskForm.style.display = "block"
 })
 
 createNewTask.addEventListener("submit", function (e){
@@ -36,4 +39,21 @@ createNewTask.addEventListener("submit", function (e){
   selectedList.appendChild(newTask)
   taskDescription.value = ""
   newTaskPriority.value = ""
+})
+
+lists.addEventListener("click", (e) => {
+  if (e.target.className === "delete-list") {
+    let listItem = e.target.parentElement.innerText.slice(0, -1)
+    Array.from(selectList).forEach(element => {
+      if (element.innerText === listItem) {
+        element.remove()
+      }
+    })
+    e.target.parentElement.parentElement.remove()
+  } else if (e.target.className === "delete-task") {
+    e.target.parentElement.remove()
+  }
+  if (selectList.length === 0) {
+    createNewTaskForm.style.display = "none"
+  }
 })
