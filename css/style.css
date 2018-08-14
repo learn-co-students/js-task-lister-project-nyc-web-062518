@@ -128,3 +128,7 @@ button {
 #mocha {
 	background-color: black;
 }
+
+#create-task-form {
+	display: none;
+}
