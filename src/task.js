@@ -1,3 +1,11 @@
+let taskID = 0
+let allTasks = []
+
 class Task {
-  // your code here
+  constructor(title, priority){
+    this.title = title
+    this.priority = priority
+    this.id = ++taskID
+    allTasks.push(this)
+  }
 }
